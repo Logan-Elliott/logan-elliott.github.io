@@ -280,9 +280,10 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  github-pages (~> 231)
+  github-pages
   http_parser.rb (~> 0.6.0)
   jekyll-feed (~> 0.12)
+  jekyll-remote-theme (~> 0.4.3)
   jekyll-seo-tag (~> 2.8)
   minima (~> 2.5)
   tzinfo (>= 1, < 3)
