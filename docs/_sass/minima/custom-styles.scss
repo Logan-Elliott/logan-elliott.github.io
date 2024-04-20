@@ -20,9 +20,8 @@
 
 // Modify color/style of links for markdown-toc
 // This is because I want links within table of contents to have different styling than rest of site
-// New rule for links within markdown-toc with a more specific selector
 #markdown-toc a {
-    color: $feed-color; // Change to your desired color
+    color: $light-shade;
   }
 
 //.logo__cursor {
@@ -36,7 +35,7 @@
 // Modify RSS subscribe styling
 .feed-subscribe {
     a{
-        color: $feed-color;
+        color: $light-shade;
     }
 
     &.svg-icon {
