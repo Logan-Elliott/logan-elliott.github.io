@@ -1,9 +1,9 @@
 // Placeholder to allow overriding predefined variables smoothly.
 
 //$dark-my-color: #ad2323;
-//$my-old-color:  #dd3333;
 $feed-color:    #ff6666;
 $light-shade:   #e15151;
+//$border-color-03: #713737;
 
 //$hover-my-color: #f16334;
 //$brand-color:   $my-color;
@@ -13,14 +13,7 @@ $light-shade:   #e15151;
 
 //$my-color: #c42121; // Don't like this one tbh :/
 
-//$my-color: #ff3333;
-//$my-color:    #ff6666;
-//$my-color:  #ff4d4d;
 $my-color:  #dd3333;
-
-
-
-//$hover-my-color: #f16334;
 
 //$site-title-color:      $brand-color-light;
 
@@ -28,14 +21,10 @@ $my-color:  #dd3333;
 //$link-visited-color:    $link-base-color;
 //$link-hover-color:  adjust-hue($brand-color, 30);
 
-//$site-title-color:  $my-old-color;
 $site-title-color:  $my-color;
-
 
 //$link-base-color:   adjust-hue($my-color, 8);
 $link-base-color:   $my-color;
 $link-visited-color:    $link-base-color;
-//$link-hover-color:  adjust-hue($hover-my-color, 0);
 
-//$link-hover-color:  adjust-hue($my-color, 8.5);
 $link-hover-color:  adjust-hue($my-color, 20);
