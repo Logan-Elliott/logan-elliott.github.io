@@ -7,9 +7,9 @@ layout: post
 tags:
     - 'Antivirus Evasion'
     - 'C#'
-    - injection
+    - 'Injection'
     - 'Process Hollowing'
-    - Windows
+    - 'Windows'
 ---
 ![post-image](/assets/images/fd99b01a-0d4c-4af2-a94c-73e814770c35.webp)
 

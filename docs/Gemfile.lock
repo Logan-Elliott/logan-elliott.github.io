@@ -285,7 +285,7 @@ DEPENDENCIES
   jekyll-feed (~> 0.12)
   jekyll-remote-theme (~> 0.4.3)
   jekyll-seo-tag (~> 2.8)
-  minima (~> 2.5)
+  jemoji (~> 0.13.0)
   tzinfo (>= 1, < 3)
   tzinfo-data
   wdm (~> 0.1.1)

@@ -1,36 +1,11 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
 
-//.site-title {
-//  @include relative-font-size(1.625);
-//  font-weight: 300;
-//  letter-spacing: -1px;
-//  margin-bottom: 0;
-//  float: left;
-//
-//  @include media-query($on-palm) {
-//    padding-right: 45px;
-//  }
-//
-//  &,
-//  &:visited {
-//    color: $site-title-color;
-//  }
-//}
-
 // Modify color/style of links for markdown-toc
 // This is because I want links within table of contents to have different styling than rest of site
 #markdown-toc a {
     color: $light-shade;
   }
-
-//.logo__cursor {
-//	background: rgb(0, 148, 25);
-//	width: 6px;
-//	animation: cursor 2s infinite;
-//	-webkit-animation: cursor 2s infinite;
-//	-moz-animation: cursor 2s infinite;
-//}
 
 // Modify RSS subscribe styling
 .feed-subscribe {
@@ -39,7 +14,145 @@
     }
 
     &.svg-icon {
-    padding: 5px 5px 2px 0
+    padding: 5px 5px 2px 0;
     }
 }
 
+// Add animated CSS terminal to 'about.md' page
+
+// Add animated CSS terminal to 'about.md' page
+
+:root {
+    --blink-color: #00E567;
+}
+
+#terminal {
+    min-height: 300px;
+    max-width: 100%;
+    margin: 0 auto;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: 3px;
+    background: #1D1F21;
+    box-shadow: 0px 13px 17px -6px rgba(0, 0, 0, 0.38);
+}
+
+#terminal:hover {
+    transform: translate3d(0,-10px,0);
+    box-shadow: 0px 38px 90px -38px rgba(0, 0, 0, 0.45);
+}
+
+.terminal-window {
+    text-align: left;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.terminal-bar {
+    background: rgba(225, 225, 225, 0.75);
+    height: 35px;
+    line-height: 36px;
+    padding-left: 4px;
+    padding-top: 1px;
+}
+
+.terminal-bar .circle {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid;
+    margin: 0 2px;
+}
+
+.terminal-bar .circle.circle-red {
+    background: #FF0040;
+    border-color: #d73031;
+}
+
+.terminal-bar .circle.circle-orange {
+    background: #FFCF00;
+    border-color: #d7911e;
+}
+
+.terminal-bar .circle.circle-green {
+    background: #00E567;
+    border-color: #23a124;
+}
+
+.terminal-body {
+    padding: 8px;
+    color: #fff;
+    line-height: 25px;
+    font-family: monospace, Quicksand, sans-serif;
+}
+
+.command {
+    color: #fff;
+}
+
+.cursor {
+    display: inline-block;
+    height: 1.1em;
+    margin-top: -4px;
+    width: 0.5em;
+    vertical-align: middle;
+    animation: 1s blink step-end infinite;
+}
+
+@keyframes blink {
+    from, to {
+        background: 0 0;
+    }
+    50% {
+        background: var(--blink-color);
+    }
+}
+
+@-moz-keyframes blink {
+    from, to {
+        background: 0 0;
+    }
+    50% {
+        background: var(--blink-color);
+    }
+}
+
+@-webkit-keyframes blink {
+    from, to {
+        background: 0 0;
+    }
+    50% {
+        background: var(--blink-color);
+    }
+}
+
+@-ms-keyframes blink {
+    from, to {
+        background: 0 0;
+    }
+    50% {
+        background: var(--blink-color);
+    }
+}
+
+@-o-keyframes blink {
+    from, to {
+        background: 0 0;
+    }
+    50% {
+        background: var(--blink-color);
+    }
+}
+
+term-footer {
+    padding: 50px;
+
+    a {
+        color: #1DC8FE;
+        
+        &:hover {
+            text-decoration: none;
+            color: #1DC8FE;
+        }
+    }
+}
