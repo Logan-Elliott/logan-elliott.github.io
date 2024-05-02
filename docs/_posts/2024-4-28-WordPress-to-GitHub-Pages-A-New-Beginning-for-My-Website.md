@@ -75,7 +75,7 @@ Yes, actually, it’s really free.
 
 Before, I was paying around $1000 USD a year for hosting, domain, web application firewall (WAF), licensing, etc.
 
-Yea, that’s way too fucking expensive.
+Yea, that’s ***way*** too expensive.
 
 The only thing I will be paying for now is my domain, which is only $20 a year.
 
