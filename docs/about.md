@@ -39,7 +39,7 @@ Hello world! :wave:
 
 My name is Logan Elliott.
 
-I am a red teamer with an insatiable curiosity. :black_cat:
+I am a penetration tester with an insatiable curiosity. :black_cat:
 
 I am always keen to see how I can build and break things. :wrench: :fire:
 

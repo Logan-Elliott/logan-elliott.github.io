@@ -169,11 +169,11 @@ Given this change, I’ve decided to view this as a fresh new start for my blog.
 
 There are some things I will be doing differently with my blog going forward:
 
-1. **Focus on content over quality:** I feel that in the past, I would get carried away with writing and would spend too much time focusing on details, and let’s be honest, most of us aren’t going to read a post that is longer than the fucking *Magna Carta* whenever we are hacking into something. So, from now on, I will be making an effort to keep the majority of posts short and sweet.
+1. **Write Code, Not Essays: Keeping Things Short & Sweet**
 
-2. **Grammar Nazi Punks Fuck Off:** That statement is actually quite self-deprecating, given that I am a bit of a grammar nazi myself (I read a lot, okay), but I simply do not have the time anymore to care. I have been told that I am a good writer; maybe I am or not. However, my last name ain't Tolstoy, and I’m done writing novels. If you couldn’t tell from the writing style in this post thus far, I will be keeping things cool and casual. :sunglasses:
+2. **Let Hacking = Content; Grammar = Optional**
 
-3. **Posting More, Worrying Less:** When I first started my blog on WordPress, I was 19, and I think I was a bit too worried about how my content would be received. Well, I have grown a lot since then. I know much more about this field and what topics I enjoy studying and which I don’t. These days, I care much less about writing for an audience than writing for myself. I believe my blog should be a documentation of my own journey, passion, and love for what I do. It is ***still***, and ***always will be***, a goal of mine to share the knowledge and experiences I accumulate with others in this field, and this blog will still do that. I hope my writings here will help others, whether through my research, mistakes, tools, etc. However, I will focus on writing for myself first, and hopefully, some people will find value in what I share! :slightly_smiling_face:
+3. **Post More, Stress Less**
 
 I have decided to transfer only my most recent [post]({% post_url 2023-10-08-its-all-fud-and-games-undetectable-process-hollowing-on-windows %}){:target="_blank"}{:rel="noopener noreferrer"} from my previous WordPress blog to this new site.
 
