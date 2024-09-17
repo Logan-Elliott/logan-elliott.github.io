@@ -1,6 +1,28 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
 
+// Customize dark mode background color to value #2f3038 from default of #181818
+// Note that this has been set here, because overriding the $dm-background-color var in in custom-variables.scss does not work
+@media (prefers-color-scheme: dark) {
+    :root {
+      --minima-background-color: #2f3038;
+    }
+  }
+  
+
+/**
+ * Custom Site header
+ */
+ .site-header {
+    border-top: 0px solid $border-color-03; // set this to 0px to get rid of grey border at top of site header
+    border-bottom: 1px solid $border-color-01;
+    min-height: $spacing-unit * 1.865;
+    line-height: $base-line-height * $base-font-size * 2.25;
+  
+    // Positioning context for the mobile navigation icon
+    position: relative;
+  }
+
 // Modify color/style of links for markdown-toc
 // This is because I want links within table of contents to have different styling than rest of site
 #markdown-toc a {
@@ -10,15 +32,13 @@
 // Modify RSS subscribe styling
 .feed-subscribe {
     a{
-        color: $light-shade;
+        color: $brand-color;
     }
 
     &.svg-icon {
     padding: 5px 5px 2px 0;
     }
 }
-
-// Add animated CSS terminal to 'about.md' page
 
 // Add animated CSS terminal to 'about.md' page
 
